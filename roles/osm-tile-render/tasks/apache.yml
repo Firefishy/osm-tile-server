@@ -1,0 +1,50 @@
+---
+- name: Enable required apache modules
+  apache2_module: name="{{ item }}" state=present
+  with_items:
+    - alias
+    - cgi
+    - expires
+    - headers
+    - remoteip
+    - rewrite
+  notify:
+    - restart apache
+
+- name: apache module tile.conf template
+  template:
+    src: apache-module-tile.conf.j2
+    dest: /etc/apache2/mods-available/tile.conf
+  notify:
+    - restart apache
+
+- name: Enable apache tile module config
+  file:
+    src: /etc/apache2/mods-available/tile.conf
+    dest: /etc/apache2/mods-enabled/tile.conf
+    state: link
+
+- name: Disable default apache vhost
+  file:
+    path: /etc/apache2/sites-enable/000-default.conf
+    state: absent
+
+- name: Add apache tile vhost template
+  template:
+    src: apache-site.conf.j2
+    dest: /etc/apache2/sites-available/tile.conf
+    mode: 0644
+  notify:
+    - restart apache
+
+- name: Enable apache tile vhost
+  file:
+    src: /etc/apache2/sites-available/tile.conf
+    dest: /etc/apache2/sites-enabled/tile.conf
+    state: link
+
+#- name: Create tile base
+#  file:
+#    path: /srv/tile.openstreetmap.org
+#    mode: 0755
+#    state: directory

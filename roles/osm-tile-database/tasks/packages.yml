@@ -1,0 +1,27 @@
+---
+#- name: Add postgresql deb repo
+
+- name: Install postgis deb package
+  apt: name="postgis" state=present
+
+- name: Install deb package requirements
+  apt: name="{{ item }}" state=present
+  with_items:
+    - osm2pgsql
+    - osmosis
+    - ruby
+    - ruby-dev
+    - libproj-dev
+    - libxml2-dev
+    - liblockfile-simple-perl
+    - libfilesys-df-perl
+    - zlib1g-dev #fixme undeclared
+    - libproj-dev #fixme undeclared
+
+- name: Install proj4rb gem
+  gem: name="proj4rb" version="0.4.3" user_install=no state=present
+
+- name: Install gem package requirements
+  gem: name="{{ item }}" user_install=no state=present
+  with_items:
+    - libxml-ruby

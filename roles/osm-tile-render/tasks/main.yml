@@ -1,0 +1,5 @@
+---
+- include: packages.yml
+- include: nodejs.yml
+- include: git.yml
+- include: apache.yml

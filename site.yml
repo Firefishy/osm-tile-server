@@ -1,0 +1,18 @@
+---
+- hosts: group-osm-tile-database
+  gather_facts: yes
+  roles:
+    - osm-tile-base
+    - osm-tile-database
+
+- hosts: group-osm-tile-render
+  gather_facts: yes
+  roles:
+    - osm-tile-base
+    - osm-tile-render
+
+- hosts: group-osm-tile-cache
+  gather_facts: yes
+  roles:
+    - osm-tile-base
+#    - osm-tile-cache

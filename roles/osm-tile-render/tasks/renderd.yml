@@ -1,0 +1,5 @@
+---
+- name: renderd.conf template
+  template:
+    src:  renderd.conf.j2
+    dest: /etc/renderd.conf

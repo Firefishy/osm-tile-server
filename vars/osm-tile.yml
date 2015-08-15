@@ -1,0 +1,4 @@
+---
+osm_planet_file: http://download.geofabrik.de/africa/south-africa-and-lesotho-latest.osm.bz2
+osm_planet_diffs_frequency: daily #minutely #hourly #daily
+osm_planet_diffs_source: http://download.geofabrik.de/africa/south-africa-and-lesotho-updates/

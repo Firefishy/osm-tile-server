@@ -1,0 +1,15 @@
+---
+- name: Install nodejs deb packages
+  apt: name="{{ item }}" state=present
+  with_items:
+    - nodejs
+    - npm
+    - g++
+    - make
+    - nodejs-legacy
+
+- name: Install npm requirements
+  npm: name="{{ item }}" production=yes global=yes state=present
+  with_items:
+    - carto
+    - millstone

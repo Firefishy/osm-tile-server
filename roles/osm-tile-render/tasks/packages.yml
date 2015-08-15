@@ -1,0 +1,25 @@
+---
+
+- name: Add OpenStreetMap Admins package deb repo
+  apt_repository: repo='ppa:osmadmins/ppa'
+
+- name: Install deb package requirements
+  apt: name="{{ item }}" state=present
+  with_items:
+    - apache2
+    - python-cairo
+    - python-mapnik
+    - ttf-dejavu
+    - fonts-droid
+    - ttf-unifont
+    - fonts-sipa-arundina
+    - fonts-sil-padauk
+    - fonts-khmeros
+    - ttf-indic-fonts-core
+    - ttf-tamil-fonts
+    - ttf-kannada-fonts
+    - mapnik-utils
+    - renderd
+    - unzip
+    - gdal-bin
+    - libapache2-mod-tile #fixme undeclared dep
